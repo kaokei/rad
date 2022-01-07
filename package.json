@@ -105,5 +105,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "simple-statistics": "^7.7.0"
   }
 }
