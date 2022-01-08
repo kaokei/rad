@@ -1,7 +1,7 @@
 {
   "name": "@kaokei/rad",
   "version": "1.0.0",
-  "description": "@kaokei/rad package description",
+  "description": "生成一组随机数，随机和平均的博弈",
   "main": "./dist/index.cjs.runtime.min.js",
   "module": "./dist/index.esm.runtime.min.js",
   "types": "./dist/src/index.d.ts",
@@ -10,7 +10,7 @@
   "files": [
     "dist/**/*"
   ],
-  "browserVariableName": "CustomGlobalNamespace",
+  "browserVariableName": "RAD",
   "sideEffects": false,
   "homepage": "https://github.com/kaokei/rad",
   "author": "kaokei",
