@@ -6,6 +6,12 @@ import {
 
 import * as ss from 'simple-statistics';
 
+/**
+ * 计算所有点之间的总距离
+ *
+ * @param {number[]} arr
+ * @return {*}
+ */
 function distance(arr: number[]) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -14,6 +20,22 @@ function distance(arr: number[]) {
     }
   }
   return sum;
+}
+
+/**
+ * 计算所有点之间最大的距离
+ *
+ * @param {number[]} arr
+ * @return {*}
+ */
+function maxDistance(arr: number[]) {
+  let max = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      max = Math.max(max, Math.abs(arr[i] - arr[j]));
+    }
+  }
+  return max;
 }
 
 const samples = [
@@ -49,6 +71,7 @@ function test1() {
 
 /**
  * 计算所有点之间的距离
+ * 似乎没有明显差距
  */
 function test2() {
   const result = [];
@@ -65,7 +88,28 @@ function test2() {
   console.log('输出距离结果 => ', JSON.stringify(result, null, 2));
 }
 
-test2();
+/**
+ * 计算所有点之间的最大距离
+ * 似乎没有明显差距
+ */
+function test3() {
+  const result = [];
+  for (const sample of samples) {
+    const currentResult = [[], [], []] as [number[], number[], number[]];
+    for (let i = 0; i < SAMPLE_COUNT; i++) {
+      currentResult[0].push(maxDistance(randomMulti(...sample)));
+      currentResult[1].push(maxDistance(evenlyDistributed(...sample)));
+      currentResult[2].push(maxDistance(randomDistribution(...sample)));
+    }
+    const newResult = currentResult.map(item => ss.mean(item));
+    result.push(newResult);
+  }
+  console.log('输出最大距离结果 => ', JSON.stringify(result, null, 2));
+}
+
+// test1();
+// test2();
+test3();
 
 /*
 // 以下是方差的输出结果
@@ -149,6 +193,49 @@ test2();
     1666452658179.0918,
     1666666649632.567,
     1666666667495.2444
+  ]
+]
+*/
+
+/*
+// 以下是最大距离的输出结果
+// 看起来没什么区别
+// const SAMPLE_COUNT = 9999;
+输出最大距离结果 =>  [
+  [
+    8.008200820082008,
+    9,
+    8.439443944394439
+  ],
+  [
+    97.82458245824583,
+    99,
+    98.45024502450245
+  ],
+  [
+    9798.96189618962,
+    9899.846784678468,
+    9870.76397639764
+  ],
+  [
+    997.8632863286329,
+    999,
+    998.4559455945595
+  ],
+  [
+    9979.994799479948,
+    9989.970497049704,
+    9986.830483048305
+  ],
+  [
+    9997.855485548554,
+    9999,
+    9998.459345934594
+  ],
+  [
+    99980.13851385139,
+    99990.01610161016,
+    99986.84378437843
   ]
 ]
 */
