@@ -1,6 +1,6 @@
 {
   "name": "@kaokei/rad",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "生成一组随机数，随机和平均的博弈",
   "main": "./dist/index.cjs.runtime.min.js",
   "module": "./dist/index.esm.runtime.min.js",
